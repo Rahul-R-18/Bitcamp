@@ -122,19 +122,22 @@ function loadGrid() {
 	}
 
 	counter = 0
-
+	layerCounter = 1
 	//Initializing vertical paths
-	for (let i = 0; i < gridSize ; i++) {
-		for (let j = 0; j < gridSize - 1; j++) {
-			grid[j][i].directions[2] = new Path(Math.floor(Math.random() * 3)+1, 
-				(".sideborder.sidelayer" + (i + 1) + ".rec1" + counter))
+	for (let i = 0; i < gridSize - 1; i++) {
+		for (let j = 0; j < gridSize ; j++) {
+			grid[i][j].directions[2] = new Path(Math.floor(Math.random() * 3)+1, 
+				(".sideborder.sidelayer" + layerCounter + ".rec1" + counter))
 			counter += 1
+			console.log(grid[i][j].directions[2].elementName)
 
-			grid[j + 1][i].directions[0] = grid[j][i].directions[2]
+			grid[i + 1][j].directions[0] = grid[i][j].directions[2]
 
-			document.querySelector(grid[j][i].directions[2].elementName).style.backgroundColor = 
-				color_dict[grid[j][i].directions[2]]
+			document.querySelector(grid[i][j].directions[2].elementName).style.backgroundColor = 
+				color_dict[grid[i][j].directions[2]]
 		}
+
+		layerCounter += 1
 	}
 	
 	for (let i=0; i < gridSize ; i++) {
@@ -146,22 +149,26 @@ function loadGrid() {
 	}
 
 	counter = 0
+	layerCounter = 0
+
 	//Initializing horizontal paths
 	for (let i = 0; i < gridSize ; i++) {
 		for (let j = 0; j < gridSize - 1; j++) {
 			grid[i][j].directions[1] = new Path(Math.floor(Math.random() * 3)+1, 
-				(".border.layer"+ (i + 1) + ".rec0" + counter))
+				(".border.layer"+ layerCounter + ".rec0" + counter))
 			counter += 1
+			
 
 			grid[i][j + 1].directions[3] = grid[i][j].directions[1]
 
 			document.querySelector(grid[i][j].directions[2].elementName).style.backgroundColor = 
 				color_dict[grid[i][j].directions[2]]
 		}
+
+		layerCounter += 1
 	}
 
 	player = new Player(grid[0][0])
 }
 
-document.querySelector(".sideborder.sidelayer1.rec00").style.backgroundColor = "blue"
 loadGrid()
