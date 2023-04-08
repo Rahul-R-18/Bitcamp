@@ -4,6 +4,7 @@ let gridSize = 4
 let grid = [[],[],[],[]]
 let player = null
 let dict = {"mud":3,"ice":1,"reg":2}
+let color_dict = {"mud":"brown","ice":"lightblue","reg":"grey"}
 let countDownDate = new Date()
 countDownDate.setSeconds(countDownDate.getSeconds() + 60)
 
@@ -20,6 +21,8 @@ class Node {
 	xPos = 0
 	yPos = 0 
 
+	
+
 	//0-up 1-right 2-down 3-left
 	directions = [null, null, null, null]
 	constructor(d, x, y) {
@@ -27,6 +30,7 @@ class Node {
 		this.data = d
 		this.xPos = x
 		this.yPos = y
+		
 	}
 }
 	
@@ -34,8 +38,9 @@ class Node {
 
 class Path {
 	type = 0;
+	elementName = ""
 		
-	constructor(num) {
+	constructor(num, name) {
 		if (num == 0) {
 			this.type="mud";
 		} else if (num == 1) {
@@ -43,6 +48,8 @@ class Path {
 		} else {
 			this.type = "ice";
 		}
+
+		this.elementName = name
 	}			
 }
 
@@ -114,11 +121,18 @@ function loadGrid() {
 		}
 	}
 
+	counter = 0
+
 	//Initializing vertical paths
 	for (let i = 0; i < gridSize ; i++) {
 		for (let j = 0; j < gridSize - 1; j++) {
-			grid[j][i].directions[2] = new Path(Math.floor(Math.random() * 3)+1)
+			grid[j][i].directions[2] = new Path(Math.floor(Math.random() * 3)+1, ("rec" + "1" + counter))
+			counter += 1
+
 			grid[j + 1][i].directions[0] = grid[j][i].directions[2]
+
+			document.getElementByClassName(grid[j][i].directions[2].elementName).style.backgroundColor = 
+				color_dict[grid[j][i].directions[2]
 		}
 	}
 	
@@ -130,11 +144,17 @@ function loadGrid() {
 	    console.log()
 	}
 
+	counter = 0
 	//Initializing horizontal paths
 	for (let i = 0; i < gridSize ; i++) {
 		for (let j = 0; j < gridSize - 1; j++) {
-			grid[j][i].directions[1] = new Path(Math.floor(Math.random() * 3)+1)
-			grid[j][i].directions[3] = grid[j][i].directions[1]
+			grid[i][j].directions[1] = new Path(Math.floor(Math.random() * 3)+1, ("rec" + "0" + counter))
+			counter += 1
+
+			grid[i][j + 1].directions[3] = grid[i][j].directions[1]
+
+			document.getElementByClassName(grid[i][j].directions[2].elementName).style.backgroundColor = 
+				color_dict[grid[i][j].directions[2]
 		}
 	}
 
