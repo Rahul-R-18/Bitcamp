@@ -150,7 +150,7 @@ function loadGrid() {
 	for (let i = 0; i < gridSize ; i++) {
 		for (let j = 0; j < gridSize - 1; j++) {
 			grid[i][j].directions[1] = new Path(Math.floor(Math.random() * 3)+1, 
-				(".border.layer"+ (i + 1) + "rec0" + counter))
+				(".border.layer"+ (i + 1) + ".rec0" + counter))
 			counter += 1
 
 			grid[i][j + 1].directions[3] = grid[i][j].directions[1]
