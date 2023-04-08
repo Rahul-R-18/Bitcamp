@@ -1,6 +1,6 @@
 // JavaScript source code
 
-public class Game {
+class Game {
 	
 	function loadGrid() {
 		let gridSize = 5
@@ -28,55 +28,6 @@ public class Game {
 				grid[i][j + 1].left = grid[i][j].right
 			}
 		}
-		/*
-		for(let i = 0;i<5;i++) {
-				grid.add(new ArrayList<Node<Integer>>());
-				for (int j=0;j<5;j++) {
-					Integer integer = r.nextInt(15)+1;
-					Node<Integer> x = new Node(integer);
-					grid.get(i).add(x);
-				}
-		}
-		for (int i=0;i<5;i++) {
-			for (int j=0;j<5;j++) {
-				System.out.println(grid.get(i).get(j).data);
-				
-			}
-			System.out.println();
-		}
-		
-		for (int i=0;i<4;i++) {
-			paths.add(new ArrayList<Path>());
-			for (int j=0;j<3;j++) {
-				paths.get(i).add(new Path(grid.get(i).get(j),grid.get(i).get(j+1),r.nextInt(3)));
-			}
-		}
-		
-		for (int i=0;i<3;i++) {
-			paths.add(new ArrayList<Path>());
-			for (int j=0;j<4;j++) {
-				paths.get(i).add(new Path(grid.get(i).get(j),grid.get(i+1).get(j),r.nextInt(3)));
-			}
-		}
-		
-		System.out.println("Horizontal\n");
-		for (int i=0;i<4;i++) {
-			for (int j=0;j<3;j++) {
-				System.out.println(paths.get(i).get(j).type);
-				
-			}
-			System.out.println();
-		}
-		
-		System.out.println("Vertical\n");
-		for (int i=0;i<3;i++) {
-			for (int j=0;j<4;j++) {
-				System.out.println(paths.get(i).get(j).type);
-				
-			}
-			System.out.println();
-		}
-		*/
 	}
 	
 	function main(String[] args) {
@@ -84,6 +35,12 @@ public class Game {
 	}
 	
 	class Player {
+		var position = null
+
+		constructor(defaultPos) {
+			position = defaultPos
+		}
+
 		function move() {
 
 		}
