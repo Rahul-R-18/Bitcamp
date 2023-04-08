@@ -72,14 +72,17 @@ function checkKey(e) {
             player.position = grid[yPos + 1][xPos]
             setTimeout(() => {  console.log("Moving Up"); }, 200);
             countDownDate.setSeconds(countDownDate.getSeconds()+player.position.data)
+            old_position.data=(Math.random() * 10)+1
 		}
     }
     else if (e.keyCode == '40') {
         if (player.canMove(2)) {
+            old_position = player.position
             countDownDate.setSeconds(countDownDate.getSeconds() - dict[(player.position.directions[2])]);
             player.position = grid[yPos - 1][xPos]
             setTimeout(() => {  console.log("Moving Down"); }, 200);
             countDownDate.setSeconds(countDownDate.getSeconds()+player.position.data)
+            old_position.data=(Math.random() * 10)+1
 		}
     }
     else if (e.keyCode == '37') {
@@ -88,6 +91,7 @@ function checkKey(e) {
 		    player.position = grid[yPos][xPos - 1]
 		    setTimeout(() => {  console.log("Moving Left"); }, 200);
 		    countDownDate.setSeconds(countDownDate.getSeconds()+player.position.data)
+		    old_position.data=(Math.random() * 10)+1
 		}
     }
     else if (e.keyCode == '39') {
@@ -96,6 +100,7 @@ function checkKey(e) {
            player.position = grid[yPos][xPos + 1]
            setTimeout(() => {  console.log("Moving Right"); }, 200);
            countDownDate.setSeconds(countDownDate.getSeconds()+player.position.data)
+           old_position.data=(Math.random() * 10)+1
 		}
     }
 
