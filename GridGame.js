@@ -3,7 +3,7 @@
 let gridSize = 4
 let grid = [[],[],[],[]]
 let player = null
-
+let time = 60
 
 class Node {
 	data = 0;
@@ -16,9 +16,9 @@ class Node {
 	
 	constructor(d, x, y) {
 			
-		data = d;
-		xPos = x
-		yPos = y
+		this.data = d
+		this.xPos = x
+		this.yPos = y
 	}
 }
 	
@@ -29,11 +29,11 @@ class Path {
 		
 	constructor(num) {
 		if (num == 0) {
-			type="mud";
+			this.type="mud";
 		} else if (num == 1) {
-			type="reg";
+			this.type="reg";
 		} else {
-			type = "ice";
+			this.type = "ice";
 		}
 	}			
 }
@@ -42,14 +42,14 @@ class Player {
 	position = null
 
 	constructor(defaultPos) {
-		position = defaultPos
+		this.position = defaultPos
 	}
 
 	canMove(direction) {
 		return (position.directions[direction] != null)
 	}
 }
-
+/*
 document.onkeydown = checkKey;
 
 function checkKey(e) {
@@ -77,7 +77,7 @@ function checkKey(e) {
 		}
     }
 
-}
+} */
 
 function loadGrid() {
 	
@@ -85,22 +85,30 @@ function loadGrid() {
 	//Initializing nodes
 	for (let i = 0; i < gridSize ; i++) {
 		for (let j = 0; j < gridSize ; j++) {
-			grid[i].push(new Node(Math.floor(Math.random() * 10), i, j))
+			grid[i].push(new Node(Math.floor(Math.random() * 10)+1, i, j))
 		}
 	}
 
 	//Initializing vertical paths
 	for (let i = 0; i < gridSize ; i++) {
 		for (let j = 0; j < gridSize - 1; j++) {
-			grid[j][i].directions[2] = new Path(Math.floor(Math.random() * 3))
+			grid[j][i].directions[2] = new Path(Math.floor(Math.random() * 3)+1)
 			grid[j + 1][i].directions[0] = grid[j][i].directions[2]
 		}
+	}
+	
+	for (let i=0; i < gridSize ; i++) {
+	    for (let j=0; j < gridSize - 1; j++) {
+	        console.log(grid[j][i].directions[2])
+	        
+	    }
+	    console.log()
 	}
 
 	//Initializing horizontal paths
 	for (let i = 0; i < gridSize ; i++) {
 		for (let j = 0; j < gridSize - 1; j++) {
-			grid[j][i].directions[1] = new Path(Math.floor(Math.random() * 3))
+			grid[j][i].directions[1] = new Path(Math.floor(Math.random() * 3)+1)
 			grid[j][i].directions[3] = grid[j][i].directions[1]
 		}
 	}
@@ -111,9 +119,5 @@ function loadGrid() {
 function main() {
 	loadGrid();
 }
-	
 
-
-
-
-
+main()	
