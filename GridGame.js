@@ -6,17 +6,17 @@ let player = null
 
 
 class Node {
-	var data = 0;
+	data = 0;
 	
 	xPos = 0
 	yPos = 0 
 
 	//0-up 1-right 2-down 3-left
-	let directions = [null, null, null, null]
+	directions = [null, null, null, null]
 	
-	constructor(data, x, y) {
+	constructor(d, x, y) {
 			
-		this.data = data;
+		data = d;
 		xPos = x
 		yPos = y
 	}
@@ -25,7 +25,7 @@ class Node {
 
 
 class Path {
-	var type = 0;
+	type = 0;
 		
 	constructor(num) {
 		if (num == 0) {
@@ -39,13 +39,13 @@ class Path {
 }
 
 class Player {
-	var position = null
+	position = null
 
 	constructor(defaultPos) {
 		position = defaultPos
 	}
 
-	function canMove(direction) {
+	canMove(direction) {
 		return (position.directions[direction] != null)
 	}
 }
