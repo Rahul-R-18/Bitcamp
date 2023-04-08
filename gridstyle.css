@@ -1,0 +1,233 @@
+/* .container {
+    padding-top: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+} */
+
+.base{
+    height: 25cm;
+    width: 30cm;
+    background-color:black;
+    z-index: 0;
+}
+
+
+.grid{
+    height: 7cm;
+    width: 7cm;
+    background-color:lightgreen;
+    visibility: hidden;
+}
+
+.grassroads{
+    visibility: visible;
+}
+
+._1{
+    position: absolute;
+    top: 8px;
+    margin-left: 75px;
+    margin-top: 65px;
+    z-index: 1;
+}
+
+/* .grid{
+    border: solid 30px;
+    height: 7cm;
+    width: 7cm;
+    background-color: lightgreen;
+    visibility: hidden;
+    position: absolute;
+    z-index: 0;
+}
+
+._1 {
+    visibility:visible;
+    top: 8px;
+    margin-left: 75px;
+}
+
+._2{
+    visibility:visible;
+    top: 8px;
+    margin-left: 370px;
+}
+
+._3{
+    visibility:visible;
+    top: 8px;
+    margin-left: 665px;
+}
+ */
+
+
+
+/* .secondgrid{
+    border: solid 30px;
+    height: 7cm;
+    width: 7cm;
+    background-color: lightgreen;
+    position: absolute;
+    top: 8px;
+    z-index: 0;
+    margin-left: 370px;
+}
+
+.thirdgrid{
+    border: solid 30px;
+    height: 7cm;
+    width: 7cm;
+    background-color: lightgreen;
+    position: absolute;
+    top: 8px;
+    z-index: 0;
+    margin-left: 665px;
+}
+
+.fourthgrid{
+    border: solid 30px;
+    height: 7cm;
+    width: 7cm;
+    background-color: lightgreen;
+    position: absolute;
+    top: 8cm;
+    z-index: 0;
+    margin-left: 75px;
+}
+
+.fifthgrid{
+    border: solid 30px;
+    height: 7cm;
+    width: 7cm;
+    background-color: lightgreen;
+    position: absolute;
+    top: 8cm;
+    z-index: 0;
+    margin-left: 370px;
+}
+
+.sixthgrid{
+    border: solid 30px;
+    height: 7cm;
+    width: 7cm;
+    background-color: lightgreen;
+    position: absolute;
+    top: 8cm;
+    z-index: 0;
+    margin-left: 665px;
+}
+
+.seventhgrid{
+    border: solid 30px;
+    height: 7cm;
+    width: 7cm;
+    background-color: lightgreen;
+    position: absolute;
+    top: 15.75cm;
+    z-index: 0;
+    margin-left: 75px;
+}
+
+.eighthgrid{
+    border: solid 30px;
+    height: 7cm;
+    width: 7cm;
+    background-color: lightgreen;
+    position: absolute;
+    top: 15.75cm;
+    z-index: 0;
+    margin-left: 370px;
+}
+
+.ninthgrid{
+    border: solid 30px;
+    height: 7cm;
+    width: 7cm;
+    background-color: lightgreen;
+    position: absolute;
+    top: 15.75cm;
+    z-index: 0;
+    margin-left: 665px;
+}
+
+.corner{
+    height: 30px;
+    width: 30px;
+    z-index: 1;
+}
+
+.one{
+    position: absolute;
+    top: 8px;
+    left: 357px;
+    background: red;
+}
+
+.two{
+    position: absolute;
+    top: 8px;
+    left: 653px;
+    background: red;
+}
+
+.three{
+    position: absolute;
+    top: 8px;
+    left: 947px;
+    background: red;
+}
+
+.four{
+    position: absolute;
+    top: 8px;
+    left: 1244px;
+    background: red;
+}
+
+.five{
+    position: absolute;
+    top: 8px;
+    left: 357px;
+    background: red;
+}
+
+.six{
+    position: absolute;
+    top: 8px;
+    left: 653px;
+    background: red;
+}
+
+.seven{
+    position: absolute;
+    top: 8px;
+    left: 947px;
+    background: red;
+}
+
+.eight{
+    position: absolute;
+    top: 8px;
+    left: 1244px;
+    background: red;
+} */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
