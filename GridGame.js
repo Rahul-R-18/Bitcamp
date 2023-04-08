@@ -3,8 +3,18 @@
 let gridSize = 4
 let grid = [[],[],[],[]]
 let player = null
-let time = 60
-let today = new Date()
+let dict = {"mud":3,"ice":1,"reg":2}
+let countDownDate = new Date()
+countDownDate.setSeconds(countDownDate.getSeconds() + 60)
+
+let x = setInterval(function () {
+    now = new Date()
+    console.log(countDownDate.getSeconds() - now.getSeconds())
+    if (countDownDate.getSeconds() - now.getSeconds() <= 0) {
+        clearInterval(x)
+        clearInterval(y)
+    }
+}, 1000)
 
 class Node {
 	data = 0;
@@ -14,7 +24,6 @@ class Node {
 
 	//0-up 1-right 2-down 3-left
 	directions = [null, null, null, null]
-	
 	constructor(d, x, y) {
 			
 		this.data = d
@@ -40,7 +49,7 @@ class Path {
 }
 
 class Player {
-	position = (0,0)
+	position = new Node(5,0,0)
 
 	constructor(defaultPos) {
 		this.position = defaultPos
@@ -48,9 +57,6 @@ class Player {
 
 	canMove(direction) {
 		return (position.directions[direction] != null)
-	}
-	move(direction) {
-	    if (canMove)
 	}
 }
 
@@ -62,22 +68,30 @@ function checkKey(e) {
 
     if (e.keyCode == '38') {
         if (player.canMove(0)) {
-			player.position = grid[yPos + 1][xPos]
+            player.position = grid[yPos + 1][xPos]
+            setTimeout(() => {  console.log("Moving Up"); }, 200);
+            countDownDate.setSeconds(countDownDate.getSeconds() - dict[(player.position.directions[0])]);
 		}
     }
     else if (e.keyCode == '40') {
         if (player.canMove(2)) {
-			player.position = grid[yPos - 1][xPos]
+            player.position = grid[yPos - 1][xPos]
+            setTimeout(() => {  console.log("Moving Down"); }, 200);
+            countDownDate.setSeconds(countDownDate.getSeconds() - dict[(player.position.directions[2])]);
 		}
     }
     else if (e.keyCode == '37') {
 		if (player.canMove(3)) {
-			player.position = grid[yPos][xPos - 1]
+		    player.position = grid[yPos][xPos - 1]
+		    setTimeout(() => {  console.log("Moving Left"); }, 200);
+		    countDownDate.setSeconds(countDownDate.getSeconds() - dict[(player.position.directions[1])]);
 		}
     }
     else if (e.keyCode == '39') {
        if (player.canMove(1)) {
-			player.position = grid[yPos][xPos + 1]
+           player.position = grid[yPos][xPos + 1]
+           setTimeout(() => {  console.log("Moving Right"); }, 200);
+           countDownDate.setSeconds(countDownDate.getSeconds() - dict[(player.position.directions[3])]);
 		}
     }
 
@@ -122,14 +136,4 @@ function loadGrid() {
 	
 loadGrid()
 
-let countDownDate = new Date()
-countDownDate.setSeconds(countDownDate.getSeconds() + 30)
 
-let x = setInterval(function () {
-    now = new Date()
-    console.log(countDownDate.getSeconds() - now.getSeconds())
-    if (countDownDate.getSeconds() - now.getSeconds() <= 0) {
-        clearInterval(x)
-        clearInterval(y)
-    }
-}, 1000)	
