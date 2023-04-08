@@ -9,10 +9,8 @@ countDownDate.setSeconds(countDownDate.getSeconds() + 60)
 
 let x = setInterval(function () {
     now = new Date()
-    console.log(countDownDate.getSeconds() - now.getSeconds())
     if (countDownDate.getSeconds() - now.getSeconds() <= 0) {
         clearInterval(x)
-        clearInterval(y)
     }
 }, 1000)
 
@@ -143,5 +141,4 @@ function loadGrid() {
 	player = new Player(grid[0][0])
 }
 	
-loadGrid()
 
