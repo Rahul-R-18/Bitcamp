@@ -5,12 +5,14 @@
 }
 
 .base{
-    height: 27cm;
-    width: 30cm;
+    height: 25.45cm;
+    width: 27.26cm;
     background-color:black;
     z-index: 0;
     margin: 0;
     padding: 0;
+    border: 7px solid red;
+    
 }
 
 
