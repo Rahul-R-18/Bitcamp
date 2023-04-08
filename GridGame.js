@@ -1,50 +1,28 @@
 // JavaScript source code
 
+let gridSize = 5
+let grid = [[],[],[],[],[]]
 
-	
-function loadGrid() {
-	let gridSize = 5
-	let grid = [[],[],[],[],[]]
+
+
+class Node {
+	var data;
 		
-	//Initializing nodes
-	for (let i = 0; i < gridSize ; i++) {
-		for (let j = 0; j < gridSize ; j++) {
-			grid[i].push(new Node(Math.floor(Math.random() * 10)))
-		}
-	}
-
-	//Initializing vertical paths
-	for (let i = 0; i < gridSize ; i++) {
-		for (let j = 0; j < gridSize - 1; j++) {
-			grid[j][i].down = new Path(Math.floor(Math.random() * 3))
-			grid[j + 1][i].up = grid[j][i].down
-		}
-	}
-
-	//Initializing horizontal paths
-	for (let i = 0; i < gridSize ; i++) {
-		for (let j = 0; j < gridSize - 1; j++) {
-			grid[i][j].right = new Path(Math.floor(Math.random() * 3))
-			grid[i][j + 1].left = grid[i][j].right
-		}
+	var up = null
+	var down = null
+	var left = null
+	var right = null
+	//0-up 1-right 2-down 3-left
+	let directions = [null, null, null, null]
+	
+	constructor(data) {
+			
+		this.data = data;
+			
 	}
 }
 	
-function main(String[] args) {
-	loadGrid();
-}
-	
-class Player {
-	var position = null
 
-	constructor(defaultPos) {
-		position = defaultPos
-	}
-
-	function move() {
-
-	}
-}
 
 class Path {
 	var type;
@@ -57,31 +35,54 @@ class Path {
 		} else {
 			type = "ice";
 		}
-	}
-
-			
+	}			
 }
 
-class Node {
-	var data;
-		
-	var up = null
-	var down = null
-	var left = null
-	var right = null
-		
+class Player {
+	var position = null
+
+	constructor(defaultPos) {
+		position = defaultPos
+	}
+
+	function move() {
+
+	}
+}
+
+function loadGrid() {
 	
-	constructor(data) {
-			
-		this.data = data;
-		if (colCount==4) {
-			colCount=0;
-			rowCount++;
+		
+	//Initializing nodes
+	for (let i = 0; i < gridSize ; i++) {
+		for (let j = 0; j < gridSize ; j++) {
+			grid[i].push(new Node(Math.floor(Math.random() * 10)))
 		}
-		this.row=rowCount;
-		this.col=colCount;
-			
+	}
+
+	//Initializing vertical paths
+	for (let i = 0; i < gridSize ; i++) {
+		for (let j = 0; j < gridSize - 1; j++) {
+			grid[j][i].directions[2] = new Path(Math.floor(Math.random() * 3))
+			grid[j + 1][i].directions[0] = grid[j][i].directions[2]
+		}
+	}
+
+	//Initializing horizontal paths
+	for (let i = 0; i < gridSize ; i++) {
+		for (let j = 0; j < gridSize - 1; j++) {
+			grid[j][i].directions[1] = new Path(Math.floor(Math.random() * 3))
+			grid[j][i].directions[3] = grid[j][i].directions[1]
+		}
 	}
 }
+	
+function main(String[] args) {
+	loadGrid();
+}
+	
+
+
+
 
 
