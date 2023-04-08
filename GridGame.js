@@ -4,6 +4,7 @@ let gridSize = 4
 let grid = [[],[],[],[]]
 let player = null
 let time = 60
+let today = new Date()
 
 class Node {
 	data = 0;
@@ -39,7 +40,7 @@ class Path {
 }
 
 class Player {
-	position = null
+	position = (0,0)
 
 	constructor(defaultPos) {
 		this.position = defaultPos
@@ -48,8 +49,11 @@ class Player {
 	canMove(direction) {
 		return (position.directions[direction] != null)
 	}
+	move(direction) {
+	    if (canMove)
+	}
 }
-/*
+
 document.onkeydown = checkKey;
 
 function checkKey(e) {
@@ -77,7 +81,7 @@ function checkKey(e) {
 		}
     }
 
-} */
+} 
 
 function loadGrid() {
 	
@@ -116,8 +120,32 @@ function loadGrid() {
 	player = new Player(grid[0][0])
 }
 	
-function main() {
-	loadGrid();
-}
+loadGrid()
 
-main()	
+let countDownDate = new Date(today.getDate()).getTime();
+
+// Update the count down every 1 second
+let x = setInterval(function() {
+
+  // Get today's date and time
+  let now = new Date().getTime();
+    
+  // Find the distance between now and the count down date
+  let distance = countDownDate - now;
+    
+  // Time calculations for days, hours, minutes and seconds
+  let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+  // Output the result in an element with id="demo"
+  document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+  + minutes + "m " + seconds + "s ";
+    
+  // If the count down is over, write some text 
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("demo").innerHTML = "EXPIRED";
+  }
+}, 1000);	
