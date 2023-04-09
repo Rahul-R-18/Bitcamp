@@ -3,11 +3,13 @@
 let gridSize = 4
 let grid = [[],[],[],[]]
 let player = null
-let dict = {"mud":3,"ice":1,"reg":2}
+let dict = {"mud":2,"ice":0,"reg":1}
 let color_dict = {"mud":"brown","ice":"lightblue","reg":"grey"}
-let inverse_dict = {"left":"right","right":"left","up":"down","down":"up}
+const colors = ['brown', 'lightblue', 'grey'];
 let countDownDate = new Date()
 countDownDate.setSeconds(countDownDate.getSeconds() + 60)
+
+const grayBorders = document.querySelectorAll('.border.layer1, .border.layer2, .border.layer3, .border.layer4');
 
 let x = setInterval(function () {
     now = new Date()
@@ -42,12 +44,12 @@ class Path {
 	elementName = ""
 		
 	constructor(num, name) {
-		if (num == 0) {
-			this.type="mud";
-		} else if (num == 1) {
+		if (num === 0) {
+			this.type="ice";
+		} else if (num === 1) {
 			this.type="reg";
 		} else {
-			this.type = "ice";
+			this.type = "mud";
 		}
 
 		this.elementName = name
@@ -60,9 +62,9 @@ class Player {
 	constructor(defaultPos) {
 		this.position = defaultPos
 	}
-	let dummy_pos = null
+
 	canMove(direction) {
-		return (position.directions[direction] != null && direction!=inverse_dict[dummy_pos])
+		return (position.directions[direction] != null)
 	}
 }
 
@@ -79,7 +81,6 @@ function checkKey(e) {
             setTimeout(() => {  console.log("Moving Up"); }, 200);
             countDownDate.setSeconds(countDownDate.getSeconds()+player.position.data)
             old_position.data=(Math.random() * 10)+1
-	    dummy_pos="up"
 		}
     }
     else if (e.keyCode == '40') {
@@ -90,7 +91,6 @@ function checkKey(e) {
             setTimeout(() => {  console.log("Moving Down"); }, 200);
             countDownDate.setSeconds(countDownDate.getSeconds()+player.position.data)
             old_position.data=(Math.random() * 10)+1
-	    dummy_pos="down"
 		}
     }
     else if (e.keyCode == '37') {
@@ -100,7 +100,6 @@ function checkKey(e) {
 		    setTimeout(() => {  console.log("Moving Left"); }, 200);
 		    countDownDate.setSeconds(countDownDate.getSeconds()+player.position.data)
 		    old_position.data=(Math.random() * 10)+1
-		    dummy_pos="left"
 		}
     }
     else if (e.keyCode == '39') {
@@ -110,7 +109,6 @@ function checkKey(e) {
            setTimeout(() => {  console.log("Moving Right"); }, 200);
            countDownDate.setSeconds(countDownDate.getSeconds()+player.position.data)
            old_position.data=(Math.random() * 10)+1
-	   dummy_pos="right"
 		}
     }
 
@@ -125,13 +123,13 @@ function loadGrid() {
 			grid[i].push(new Node(Math.floor(Math.random() * 10)+1, i, j))
 		}
 	}
-
+	
 	counter = 0
 	layerCounter = 1
 	//Initializing vertical paths
 	for (let i = 0; i < gridSize - 1; i++) {
 		for (let j = 0; j < gridSize ; j++) {
-			grid[i][j].directions[2] = new Path(Math.floor(Math.random() * 3)+1, 
+			grid[i][j].directions[2] = new Path(Math.floor(Math.random() * 3), 
 				(".sideborder.sidelayer" + layerCounter + ".rec1" + counter))
 			counter += 1
 			console.log(grid[i][j].directions[2].elementName)
@@ -139,7 +137,7 @@ function loadGrid() {
 			grid[i + 1][j].directions[0] = grid[i][j].directions[2]
 
 			document.querySelector(grid[i][j].directions[2].elementName).style.backgroundColor = 
-				color_dict[grid[i][j].directions[2]]
+				color_dict[grid[i][j].directions[2].type]
 		}
 
 		layerCounter += 1
@@ -154,20 +152,20 @@ function loadGrid() {
 	}
 
 	counter = 0
-	layerCounter = 0
+	layerCounter = 1
 
 	//Initializing horizontal paths
 	for (let i = 0; i < gridSize ; i++) {
 		for (let j = 0; j < gridSize - 1; j++) {
-			grid[i][j].directions[1] = new Path(Math.floor(Math.random() * 3)+1, 
+			grid[i][j].directions[1] = new Path(Math.floor(Math.random() * 3), 
 				(".border.layer"+ layerCounter + ".rec0" + counter))
 			counter += 1
-			
+			console.log(grid[i][j].directions[1].elementName)
 
 			grid[i][j + 1].directions[3] = grid[i][j].directions[1]
 
-			document.querySelector(grid[i][j].directions[2].elementName).style.backgroundColor = 
-				color_dict[grid[i][j].directions[2]]
+			document.querySelector(grid[i][j].directions[1].elementName).style.backgroundColor = 
+				color_dict[grid[i][j].directions[2].type]
 		}
 
 		layerCounter += 1
