@@ -304,6 +304,7 @@
     z-index: 6;
     position: absolute;
     top: 0cm;
+    font-size: 40px;
 }
 
 #textbox2{
@@ -313,6 +314,8 @@
     z-index: 6;
     position: absolute;
     top: 8cm;
+    font-size: 40px;
 }
+
 
 
