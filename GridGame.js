@@ -110,6 +110,7 @@ function checkKey(event) {
 			if (player.canMove(0)) {
 				countdown -= dict[player.position.directions[0].type]
 				player.position = grid[player.position.yPos - 1][player.position.xPos]
+
 				yPosition -= speed;
 				dummy_pos = "up"
 			}
@@ -147,6 +148,10 @@ function checkKey(event) {
 	sprite.style.top = yPosition + "px";
 	sprite.style.left = xPosition + "px";
 
+}
+
+function checkTimeGain(pos) {
+	
 }
 
 function loadGrid() {
