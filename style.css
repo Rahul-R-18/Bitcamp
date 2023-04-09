@@ -270,7 +270,7 @@
 #timer {
     font-size: 25px;
     position: absolute;
-    top: 9cm;
+    top: 2cm;
     margin-left: 30cm;
     z-index: 5;
   }
@@ -280,6 +280,21 @@
     background-color: #ddd;
     border-radius: 0.5em;
     margin: 0.2em;
+}
+
+#countdown{
+    position: absolute;
+    top: 11cm;
+    margin-left: 30cm;
+}
+
+#boldtext{
+    font-weight: bold;
+}
+
+#tremain{
+    position: absolute;
+    top: 10.25cm;
 }
 
 #countuptimer {

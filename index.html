@@ -113,10 +113,21 @@
 
     <div id="timer">
         <p>The goal of the game is to maximize the time you stay alive.</p>
+        <p>Moving the sprite across a brown (mud) path costs you 2 seconds
+            of time remaining.</p>
+        <p>Moving the sprite across a blue (ice) path costs you 0 seconds
+            of time remaining.</p>
+        <p>Moving the sprite across a grey (regular road) path costs you 1 second
+            of time remaining.</p>
+        <p id="boldtext">Moving the sprite across a white square adds the number(amount of time)
+            on the square to your time remaining.</p>
         <p>Press a to begin.</p>
         <p>Use the arrow keys to move the sprite.</p>
-        <p>Time Remaining:</p>
-        <span id="countdown">00:30</span>
+
+        <p id="tremain">Time Remaining:</p>
+        <span id="countdown">
+            00:30
+        </span>
     </div>
 
     <div id="countuptimer">
@@ -127,7 +138,7 @@
 
     <div id="textbox1"><p></p></div>
     <div id="textbox2"><p></p></div>
-    
+
     <script src="GridGame.js"></script>
     <script src="timer.js"></script>
 
