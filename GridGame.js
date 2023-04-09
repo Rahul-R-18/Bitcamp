@@ -3,7 +3,7 @@
 let gridSize = 4
 let grid = [[], [], [], []]
 let player = null
-let dict = { "mud": 2, "ice": 0, "reg": 1 }
+let dict = { "mud": 7, "ice": 3, "reg": 5 }
 let color_dict = { "mud": "brown", "ice": "lightblue", "reg": "grey" }
 
 let xPosition = 0;
