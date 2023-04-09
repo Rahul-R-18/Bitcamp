@@ -35,7 +35,7 @@ document.addEventListener("keydown", function (event) {
 				document.getElementById("countup").innerHTML = "00:" + score;
 			}
 
-			if (countdown <= 0) {
+			if (countdown == 0) {
 				clearInterval(interval);
 				document.getElementById("timer").innerHTML = "Time's Up!";
 				document.getElementById("countup").innerHTML = "You stayed alive for " + score + " seconds!";
@@ -110,7 +110,7 @@ function checkKey(event) {
 			if (player.canMove(0)) {
 				countdown -= dict[player.position.directions[0].type]
 				player.position = grid[player.position.yPos - 1][player.position.xPos]
-
+				checkTimeGain(player.position)
 				yPosition -= speed;
 				dummy_pos = "up"
 			}
@@ -119,6 +119,7 @@ function checkKey(event) {
 			if (player.canMove(2)) {
 				countdown -= dict[player.position.directions[2].type]
 				player.position = grid[player.position.yPos + 1][player.position.xPos]
+				checkTimeGain(player.position)
 				yPosition += speed;
 				dummy_pos = "down"
 			}
@@ -128,6 +129,7 @@ function checkKey(event) {
 			if (player.canMove(3)) {
 				countdown -= dict[player.position.directions[3].type]
 				player.position = grid[player.position.yPos][player.position.xPos - 1]
+				checkTimeGain(player.position)
 				xPosition -= speed;
 				dummy_pos = "left"
 			}
@@ -137,6 +139,7 @@ function checkKey(event) {
 			if (player.canMove(1)) {
 				countdown -= dict[player.position.directions[1].type]
 				player.position = grid[player.position.yPos][player.position.xPos + 1]
+				checkTimeGain(player.position)
 				xPosition += speed;
 				dummy_pos = "right"
 			}
@@ -151,7 +154,15 @@ function checkKey(event) {
 }
 
 function checkTimeGain(pos) {
+	console.log(pos)
+	console.log(extraTime1)
+	console.log(extraTime2)
+	console.log(pos.xPos + " "+ pos.yPos)
+	if (pos.yPos === extraTime1[0] && pos.xPos === extraTime1[1] || pos.yPos === extraTime2[0] && pos.xPos === extraTime2[1]) {
+		countdown += pos.data
 
+		randomizeGrid()
+	}
 }
 
 function loadGrid() {
@@ -219,6 +230,7 @@ function randomizeGrid() {
 	grid[extraTime2[0]][extraTime2[1]].data = Math.floor(Math.random() * 6) + 5
 
 	//setPositions of extraTimes
+	
 	document.getElementById("textbox1").style.top = (extraTime1[0] * 315) + "px"
 	document.getElementById("textbox1").style.left = (extraTime1[1] * 315) + "px"
 	document.getElementById("textbox1").innerHTML = "<p>" + grid[extraTime1[0]][extraTime1[1]].data + "</p>"
@@ -228,6 +240,8 @@ function randomizeGrid() {
 	document.getElementById("textbox2").innerHTML = "<p>" + grid[extraTime2[0]][extraTime2[1]].data + "</p>"
 }
 
-// console.log(document.querySelector(".border.layer4.rec09").style)
+console.log(document.querySelector(".border.layer4.rec09").style)
 loadGrid()
+
+
 
