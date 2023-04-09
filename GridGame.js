@@ -1,36 +1,48 @@
 // JavaScript source code
 
 let gridSize = 4
-let grid = [[],[],[],[]]
+let grid = [[], [], [], []]
 let player = null
-let dict = {"mud":2,"ice":0,"reg":1}
-let color_dict = {"mud":"brown","ice":"lightblue","reg":"grey"}
+let dict = { "mud": 2, "ice": 0, "reg": 1 }
+let color_dict = { "mud": "brown", "ice": "lightblue", "reg": "grey" }
 
 let xPosition = 0;
 let yPosition = 0;
 
 let hasTimerStarted = false;
 let countdown = 30;
+let score = 0;
 
 document.addEventListener("keydown", function (event) {
 	if ((event.key === "A" || event.key === "a") && !hasTimerStarted) {
-    	hasTimerStarted = true;
+		hasTimerStarted = true;
 		const interval = setInterval(function () {
 			countdown--;
-
-			if(countdown<10){
+			score++;
+			if (countdown < 10) {
 				document.getElementById("countdown").innerHTML = "00:0" + countdown;
 			} else {
 				document.getElementById("countdown").innerHTML = "00:" + countdown;
 			}
 
-			if (countdown <= 0) {
+			if (score < 10) {
+				document.getElementById("countup").innerHTML = "00:0" + score;
+			} else {
+				document.getElementById("countup").innerHTML = "00:" + score;
+			}
+
+			if (countdown == 0) {
 				clearInterval(interval);
 				document.getElementById("timer").innerHTML = "Time's Up!";
+				document.getElementById("countup").innerHTML = "You stayed alive for " + score + " seconds!";
 			}
 		}, 1000);
+
+
 	}
 });
+
+
 
 class Node {
 	data = 0
@@ -58,9 +70,9 @@ class Path {
 
 	constructor(num, name) {
 		if (num === 0) {
-			this.type="ice";
+			this.type = "ice";
 		} else if (num === 1) {
-			this.type="reg";
+			this.type = "reg";
 		} else {
 			this.type = "mud";
 		}
@@ -122,7 +134,7 @@ function checkKey(event) {
 				player.position = grid[player.position.yPos][player.position.xPos + 1]
 				xPosition += speed;
 				dummy_pos = "right"
-			 }
+			}
 
 			break;
 		default:
@@ -137,8 +149,8 @@ function loadGrid() {
 
 
 	//Initializing nodes
-	for (let i = 0; i < gridSize ; i++) {
-		for (let j = 0; j < gridSize ; j++) {
+	for (let i = 0; i < gridSize; i++) {
+		for (let j = 0; j < gridSize; j++) {
 			grid[i].push(new Node(Math.floor(Math.random() * 10) + 1, j, i))
 		}
 	}
@@ -147,7 +159,7 @@ function loadGrid() {
 	layerCounter = 1
 	//Initializing vertical paths
 	for (let i = 0; i < gridSize - 1; i++) {
-		for (let j = 0; j < gridSize ; j++) {
+		for (let j = 0; j < gridSize; j++) {
 			grid[i][j].directions[2] = new Path(Math.floor(Math.random() * 3),
 				(".sideborder.sidelayer" + layerCounter + ".rec1" + counter))
 			counter += 1
@@ -166,10 +178,10 @@ function loadGrid() {
 	layerCounter = 1
 
 	//Initializing horizontal paths
-	for (let i = 0; i < gridSize ; i++) {
+	for (let i = 0; i < gridSize; i++) {
 		for (let j = 0; j < gridSize - 1; j++) {
 			grid[i][j].directions[1] = new Path(Math.floor(Math.random() * 3),
-				(".border.layer"+ layerCounter + ".rec0" + counter))
+				(".border.layer" + layerCounter + ".rec0" + counter))
 			counter += 1
 			console.log(grid[i][j].directions[1].elementName)
 

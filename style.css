@@ -282,6 +282,21 @@
     margin: 0.2em;
 }
 
+#countuptimer {
+    font-size: 25px;
+    position: absolute;
+    top: 13.5cm;
+    margin-left: 30cm;
+    z-index: 5;
+}
+
+#countuptimer span {
+    padding: 0.2em;
+    background-color: #ddd;
+    border-radius: 0.5em;
+    margin: 0.2em;
+}
+
 #textbox1{
     background-color:#ddd;
     height: 50px;
