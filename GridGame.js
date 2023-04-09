@@ -5,6 +5,7 @@ let grid = [[],[],[],[]]
 let player = null
 let dict = {"mud":3,"ice":1,"reg":2}
 let color_dict = {"mud":"brown","ice":"lightblue","reg":"grey"}
+let inverse_dict = {"left":"right","right":"left","up":"down","down":"up}
 let countDownDate = new Date()
 countDownDate.setSeconds(countDownDate.getSeconds() + 60)
 
@@ -59,9 +60,9 @@ class Player {
 	constructor(defaultPos) {
 		this.position = defaultPos
 	}
-
+	let dummy_pos = null
 	canMove(direction) {
-		return (position.directions[direction] != null)
+		return (position.directions[direction] != null && direction!=inverse_dict[dummy_pos])
 	}
 }
 
@@ -78,6 +79,7 @@ function checkKey(e) {
             setTimeout(() => {  console.log("Moving Up"); }, 200);
             countDownDate.setSeconds(countDownDate.getSeconds()+player.position.data)
             old_position.data=(Math.random() * 10)+1
+	    dummy_pos="up"
 		}
     }
     else if (e.keyCode == '40') {
@@ -88,6 +90,7 @@ function checkKey(e) {
             setTimeout(() => {  console.log("Moving Down"); }, 200);
             countDownDate.setSeconds(countDownDate.getSeconds()+player.position.data)
             old_position.data=(Math.random() * 10)+1
+	    dummy_pos="down"
 		}
     }
     else if (e.keyCode == '37') {
@@ -97,6 +100,7 @@ function checkKey(e) {
 		    setTimeout(() => {  console.log("Moving Left"); }, 200);
 		    countDownDate.setSeconds(countDownDate.getSeconds()+player.position.data)
 		    old_position.data=(Math.random() * 10)+1
+		    dummy_pos="left"
 		}
     }
     else if (e.keyCode == '39') {
@@ -106,6 +110,7 @@ function checkKey(e) {
            setTimeout(() => {  console.log("Moving Right"); }, 200);
            countDownDate.setSeconds(countDownDate.getSeconds()+player.position.data)
            old_position.data=(Math.random() * 10)+1
+	   dummy_pos="right"
 		}
     }
 
