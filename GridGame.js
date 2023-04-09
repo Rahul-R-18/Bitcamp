@@ -9,10 +9,12 @@ let color_dict = {"mud":"brown","ice":"lightblue","reg":"grey"}
 let xPosition = 0;
 let yPosition = 0;
 
+let hasTimerStarted = false;
+let countdown = 30;
 
 document.addEventListener("keydown", function (event) {
 	if ((event.key === "A" || event.key === "a") && !hasTimerStarted) {
-		hasTimerStarted = true;
+    	hasTimerStarted = true;
 		const interval = setInterval(function () {
 			countdown--;
 
