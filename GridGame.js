@@ -5,10 +5,8 @@ let grid = [[],[],[],[]]
 let player = null
 let dict = {"mud":2,"ice":0,"reg":1}
 let color_dict = {"mud":"brown","ice":"lightblue","reg":"grey"}
-let inverse_dict = {"left":"right","right":"left","up":"down","down":"up"}
 let countDownDate = new Date()
 countDownDate.setSeconds(countDownDate.getSeconds() + 60)
-old_position = null
 
 let xPosition = 0;
 let yPosition = 0;
@@ -40,9 +38,6 @@ class Node {
 		
 	}
 
-	getData() {
-		return this.data
-	}
 }
 	
 
@@ -66,44 +61,41 @@ class Path {
 
 class Player {
 	position = null
-	dummy_pos = 0
+	
 
 	constructor(defaultPos) {
 		this.position = defaultPos
 	}
 
 	canMove(direction) {
-		old_position = this.position
-		return (this.position.directions[direction] != null && direction != inverse_dict[this.dummy_pos])
+		console.log(this.position)
+		console.log(direction)
+		return (this.position.directions[direction] !== null)
 	}
 }
 
 window.addEventListener("keydown", checkKey);
 
 function checkKey(event) {
-	const speed = 325
+	const speed = 315
 	switch (event.key) {
 		case "ArrowUp":
 			
 			if (player.canMove(0)) {
 
 				countDownDate.setSeconds(countDownDate.getSeconds() - dict[(player.position.directions[0])]);
-				player.position = grid[player.position.yPos + 1][player.position.xPos]
-				setTimeout(() => {  console.log("Moving Up"); }, 200);
 				countDownDate.setSeconds(countDownDate.getSeconds()+ player.position.data)
-				old_position.data=(Math.random() * 10)+1
+				player.position = grid[player.position.yPos - 1][player.position.xPos]
 				yPosition -= speed;
 				dummy_pos = "up"
 			}
 			break;
 		case "ArrowDown":
 			if (player.canMove(2)) {
-				old_position = player.position
+
 				countDownDate.setSeconds(countDownDate.getSeconds() - dict[(player.position.directions[2])]);
-				player.position = grid[player.position.yPos - 1][player.position.xPos]
-				setTimeout(() => {  console.log("Moving Down"); }, 200);
 				countDownDate.setSeconds(countDownDate.getSeconds()+player.position.data)
-				old_position.data=(Math.random() * 10)+1
+				player.position = grid[player.position.yPos + 1][player.position.xPos]
 				yPosition += speed;
 				dummy_pos = "down"
 			}
@@ -112,10 +104,8 @@ function checkKey(event) {
 		case "ArrowLeft":
 			if (player.canMove(3)) {
 				countDownDate.setSeconds(countDownDate.getSeconds() - dict[(player.position.directions[1])]);
-				player.position = grid[player.position.yPos][player.position.xPos - 1]
-				setTimeout(() => {  console.log("Moving Left"); }, 200);
 				countDownDate.setSeconds(countDownDate.getSeconds()+ player.position.data)
-				old_position.data=(Math.random() * 10)+1
+				player.position = grid[player.position.yPos][player.position.xPos - 1]
 				xPosition -= speed;
 				dummy_pos = "left"
 			}
@@ -124,10 +114,8 @@ function checkKey(event) {
 		case "ArrowRight":
 			if (player.canMove(1)) {
 				countDownDate.setSeconds(countDownDate.getSeconds() - dict[(player.position.directions[3])]);
-				player.position = grid[player.position.yPos][player.position.xPos + 1]
-				setTimeout(() => {  console.log("Moving Right"); }, 200);
 				countDownDate.setSeconds(countDownDate.getSeconds()+player.position.data)
-				old_position.data=(Math.random() * 10)+1
+				player.position = grid[player.position.yPos][player.position.xPos + 1]
 				xPosition += speed;
 				dummy_pos = "right"
 			 }
@@ -147,7 +135,7 @@ function loadGrid() {
 	//Initializing nodes
 	for (let i = 0; i < gridSize ; i++) {
 		for (let j = 0; j < gridSize ; j++) {
-			grid[i].push(new Node(Math.floor(Math.random() * 10) + 1, i, j))
+			grid[i].push(new Node(Math.floor(Math.random() * 10) + 1, j, i))
 		}
 	}
 	
@@ -171,8 +159,8 @@ function loadGrid() {
 	}
 	
 	for (let i=0; i < gridSize ; i++) {
-	    for (let j=0; j < gridSize - 1; j++) {
-	        console.log(grid[j][i].directions[2])
+	    for (let j=0; j < gridSize ; j++) {
+	        console.log(grid[j][i].xPos + " " + grid[j][i].yPos)
 	        
 	    }
 	    console.log()
@@ -199,6 +187,8 @@ function loadGrid() {
 	}
 
 	player = new Player(grid[0][0])
+
+	console.log(grid)
 }
 
 console.log(document.querySelector(".border.layer4.rec09").style)
