@@ -3,7 +3,7 @@
 let gridSize = 4
 let grid = [[], [], [], []]
 let player = null
-let dict = { "mud": 2, "ice": 0, "reg": 1 }
+let dict = { "mud": 7, "ice": 3, "reg": 5 }
 let color_dict = { "mud": "brown", "ice": "lightblue", "reg": "grey" }
 
 let xPosition = 0;
@@ -94,8 +94,6 @@ class Player {
 	}
 
 	canMove(direction) {
-		console.log(this.position)
-		console.log(direction)
 		return ((this.position.directions[direction] !== null) && hasTimerStarted)
 	}
 }
@@ -154,10 +152,7 @@ function checkKey(event) {
 }
 
 function checkTimeGain(pos) {
-	console.log(pos)
-	console.log(extraTime1)
-	console.log(extraTime2)
-	console.log(pos.xPos + " "+ pos.yPos)
+
 	if (pos.yPos === extraTime1[0] && pos.xPos === extraTime1[1] || pos.yPos === extraTime2[0] && pos.xPos === extraTime2[1]) {
 		countdown += pos.data
 
@@ -179,7 +174,6 @@ function loadGrid() {
 
 	player = new Player(grid[0][0])
 
-	console.log(grid)
 }
 
 function randomizeGrid() {
@@ -191,7 +185,6 @@ function randomizeGrid() {
 			grid[i][j].directions[2] = new Path(Math.floor(Math.random() * 3),
 				(".sideborder.sidelayer" + layerCounter + ".rec1" + counter))
 			counter += 1
-			console.log(grid[i][j].directions[2].elementName)
 
 			grid[i + 1][j].directions[0] = grid[i][j].directions[2]
 
@@ -211,7 +204,6 @@ function randomizeGrid() {
 			grid[i][j].directions[1] = new Path(Math.floor(Math.random() * 3),
 				(".border.layer" + layerCounter + ".rec0" + counter))
 			counter += 1
-			console.log(grid[i][j].directions[1].elementName)
 
 			grid[i][j + 1].directions[3] = grid[i][j].directions[1]
 
