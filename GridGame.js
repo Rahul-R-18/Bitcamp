@@ -9,6 +9,8 @@ let color_dict = {"mud":"brown","ice":"lightblue","reg":"grey"}
 let xPosition = 0;
 let yPosition = 0;
 
+let hasTimerStarted = true
+
 let hasTimerStarted = false;
 let countdown = 30;
 
