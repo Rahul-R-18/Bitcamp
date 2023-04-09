@@ -6,12 +6,12 @@ hasTimerStarted = false;
             const interval = setInterval(function () {
                 countdown--;
 
-                if(countdown<10){
+                if(countdown < 10){
                     document.getElementById("countdown").innerHTML = "00:0" + countdown;
                 } else {
                     document.getElementById("countdown").innerHTML = "00:" + countdown;
                 }
-                
+
                 if (countdown <= 0) {
                     clearInterval(interval);
                     document.getElementById("timer").innerHTML = "Time's Up!";

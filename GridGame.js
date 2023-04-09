@@ -1,5 +1,4 @@
 // JavaScript source code
-
 let gridSize = 4
 let grid = [[],[],[],[]]
 let player = null
@@ -15,30 +14,28 @@ const grayBorders = document.querySelectorAll('.border.layer1, .border.layer2, .
 
 class Node {
 	data = 0
-	
-	xPos = 0
-	yPos = 0 
 
-	
+	xPos = 0
+	yPos = 0
 
 	//0-up 1-right 2-down 3-left
 	directions = [null, null, null, null]
 	constructor(d, x, y) {
-			
+
 		this.data = d
 		this.xPos = x
 		this.yPos = y
-		
+
 	}
 
 }
-	
+
 
 
 class Path {
 	type = 0;
 	elementName = ""
-		
+
 	constructor(num, name) {
 		if (num === 0) {
 			this.type="ice";
@@ -49,12 +46,12 @@ class Path {
 		}
 
 		this.elementName = name
-	}			
+	}
 }
 
 class Player {
 	position = null
-	
+
 
 	constructor(defaultPos) {
 		this.position = defaultPos
@@ -73,7 +70,7 @@ function checkKey(event) {
 	const speed = 315
 	switch (event.key) {
 		case "ArrowUp":
-			
+
 			if (player.canMove(0)) {
 
 				player.position = grid[player.position.yPos - 1][player.position.xPos]
@@ -88,7 +85,7 @@ function checkKey(event) {
 				yPosition += speed;
 				dummy_pos = "down"
 			}
-			
+
 			break;
 		case "ArrowLeft":
 			if (player.canMove(3)) {
@@ -96,7 +93,7 @@ function checkKey(event) {
 				xPosition -= speed;
 				dummy_pos = "left"
 			}
-			
+
 			break;
 		case "ArrowRight":
 			if (player.canMove(1)) {
@@ -104,7 +101,7 @@ function checkKey(event) {
 				xPosition += speed;
 				dummy_pos = "right"
 			 }
-			
+
 			break;
 		default:
 			break;
@@ -112,56 +109,41 @@ function checkKey(event) {
 	sprite.style.top = yPosition + "px";
 	sprite.style.left = xPosition + "px";
 
-} 
-
-document.addEventListener("keydown", function (event) {
-	if ((event.key === "A" || event.key === "a") && !hasTimerStarted) {
-		countdown = 30;
-		hasTimerStarted = true;
-		const interval = setInterval(function () {
-			countdown--;
-			document.getElementById("countdown").innerHTML = "00:" + countdown;
-			if (countdown <= 0) {
-				clearInterval(interval);
-				document.getElementById("timer").innerHTML = "Time's Up!";
-			}
-		}, 1000);
-	}
-});
+}
 
 function loadGrid() {
-	
-		
+
+
 	//Initializing nodes
 	for (let i = 0; i < gridSize ; i++) {
 		for (let j = 0; j < gridSize ; j++) {
 			grid[i].push(new Node(Math.floor(Math.random() * 10) + 1, j, i))
 		}
 	}
-	
+
 	counter = 0
 	layerCounter = 1
 	//Initializing vertical paths
 	for (let i = 0; i < gridSize - 1; i++) {
 		for (let j = 0; j < gridSize ; j++) {
-			grid[i][j].directions[2] = new Path(Math.floor(Math.random() * 3), 
+			grid[i][j].directions[2] = new Path(Math.floor(Math.random() * 3),
 				(".sideborder.sidelayer" + layerCounter + ".rec1" + counter))
 			counter += 1
 			console.log(grid[i][j].directions[2].elementName)
 
 			grid[i + 1][j].directions[0] = grid[i][j].directions[2]
 
-			document.querySelector(grid[i][j].directions[2].elementName).style.backgroundColor = 
+			document.querySelector(grid[i][j].directions[2].elementName).style.backgroundColor =
 				color_dict[grid[i][j].directions[2].type]
 		}
 
 		layerCounter += 1
 	}
-	
+
 	for (let i=0; i < gridSize ; i++) {
 	    for (let j=0; j < gridSize ; j++) {
 	        console.log(grid[j][i].xPos + " " + grid[j][i].yPos)
-	        
+
 	    }
 	    console.log()
 	}
@@ -172,14 +154,14 @@ function loadGrid() {
 	//Initializing horizontal paths
 	for (let i = 0; i < gridSize ; i++) {
 		for (let j = 0; j < gridSize - 1; j++) {
-			grid[i][j].directions[1] = new Path(Math.floor(Math.random() * 3), 
+			grid[i][j].directions[1] = new Path(Math.floor(Math.random() * 3),
 				(".border.layer"+ layerCounter + ".rec0" + counter))
 			counter += 1
 			console.log(grid[i][j].directions[1].elementName)
 
 			grid[i][j + 1].directions[3] = grid[i][j].directions[1]
 
-			document.querySelector(grid[i][j].directions[1].elementName).style.backgroundColor = 
+			document.querySelector(grid[i][j].directions[1].elementName).style.backgroundColor =
 				color_dict[grid[i][j].directions[1].type]
 		}
 
