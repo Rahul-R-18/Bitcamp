@@ -12,6 +12,8 @@ let yPosition = 0;
 let hasTimerStarted = false;
 let countdown = 30;
 
+let score = 0;
+
 document.addEventListener("keydown", function (event) {
 	if ((event.key === "A" || event.key === "a") && !hasTimerStarted) {
 		hasTimerStarted = true;
