@@ -1,16 +1,34 @@
 // JavaScript source code
+
 let gridSize = 4
 let grid = [[],[],[],[]]
 let player = null
 let dict = {"mud":2,"ice":0,"reg":1}
 let color_dict = {"mud":"brown","ice":"lightblue","reg":"grey"}
 
-let countdown = 0
-
 let xPosition = 0;
 let yPosition = 0;
 
-const grayBorders = document.querySelectorAll('.border.layer1, .border.layer2, .border.layer3, .border.layer4');
+
+document.addEventListener("keydown", function (event) {
+	if ((event.key === "A" || event.key === "a") && !hasTimerStarted) {
+		hasTimerStarted = true;
+		const interval = setInterval(function () {
+			countdown--;
+
+			if(countdown<10){
+				document.getElementById("countdown").innerHTML = "00:0" + countdown;
+			} else {
+				document.getElementById("countdown").innerHTML = "00:" + countdown;
+			}
+
+			if (countdown <= 0) {
+				clearInterval(interval);
+				document.getElementById("timer").innerHTML = "Time's Up!";
+			}
+		}, 1000);
+	}
+});
 
 class Node {
 	data = 0
@@ -60,7 +78,7 @@ class Player {
 	canMove(direction) {
 		console.log(this.position)
 		console.log(direction)
-		return (this.position.directions[direction] !== null)
+		return ((this.position.directions[direction] !== null) && hasTimerStarted)
 	}
 }
 
@@ -72,7 +90,7 @@ function checkKey(event) {
 		case "ArrowUp":
 
 			if (player.canMove(0)) {
-
+				countdown -= dict[player.position.directions[0]]
 				player.position = grid[player.position.yPos - 1][player.position.xPos]
 				yPosition -= speed;
 				dummy_pos = "up"
@@ -80,7 +98,7 @@ function checkKey(event) {
 			break;
 		case "ArrowDown":
 			if (player.canMove(2)) {
-
+				countdown -= dict[player.position.directions[2]]
 				player.position = grid[player.position.yPos + 1][player.position.xPos]
 				yPosition += speed;
 				dummy_pos = "down"
@@ -89,6 +107,7 @@ function checkKey(event) {
 			break;
 		case "ArrowLeft":
 			if (player.canMove(3)) {
+				countdown -= dict[player.position.directions[3]]
 				player.position = grid[player.position.yPos][player.position.xPos - 1]
 				xPosition -= speed;
 				dummy_pos = "left"
@@ -97,6 +116,7 @@ function checkKey(event) {
 			break;
 		case "ArrowRight":
 			if (player.canMove(1)) {
+				countdown -= dict[player.position.directions[1]]
 				player.position = grid[player.position.yPos][player.position.xPos + 1]
 				xPosition += speed;
 				dummy_pos = "right"
@@ -110,6 +130,21 @@ function checkKey(event) {
 	sprite.style.left = xPosition + "px";
 
 }
+
+document.addEventListener("keydown", function (event) {
+	if ((event.key === "A" || event.key === "a") && !hasTimerStarted) {
+		countdown = 30;
+		hasTimerStarted = true;
+		const interval = setInterval(function () {
+			countdown--;
+			document.getElementById("countdown").innerHTML = "00:" + countdown;
+			if (countdown <= 0) {
+				clearInterval(interval);
+				document.getElementById("timer").innerHTML = "Time's Up!";
+			}
+		}, 1000);
+	}
+});
 
 function loadGrid() {
 
