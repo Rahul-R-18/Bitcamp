@@ -35,7 +35,7 @@ document.addEventListener("keydown", function (event) {
 				document.getElementById("countup").innerHTML = "00:" + score;
 			}
 
-			if (countdown == 0) {
+			if (countdown <= 0) {
 				clearInterval(interval);
 				document.getElementById("timer").innerHTML = "Time's Up!";
 				document.getElementById("countup").innerHTML = "You stayed alive for " + score + " seconds!";
@@ -151,7 +151,7 @@ function checkKey(event) {
 }
 
 function checkTimeGain(pos) {
-	
+
 }
 
 function loadGrid() {
@@ -228,6 +228,6 @@ function randomizeGrid() {
 	document.getElementById("textbox2").innerHTML = "<p>" + grid[extraTime2[0]][extraTime2[1]].data + "</p>"
 }
 
-console.log(document.querySelector(".border.layer4.rec09").style)
+// console.log(document.querySelector(".border.layer4.rec09").style)
 loadGrid()
 
