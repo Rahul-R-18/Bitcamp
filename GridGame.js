@@ -92,7 +92,7 @@ function checkKey(event) {
 		case "ArrowUp":
 
 			if (player.canMove(0)) {
-				countdown -= dict[player.position.directions[0]]
+				countdown -= dict[player.position.directions[0].type]
 				player.position = grid[player.position.yPos - 1][player.position.xPos]
 				yPosition -= speed;
 				dummy_pos = "up"
@@ -100,7 +100,7 @@ function checkKey(event) {
 			break;
 		case "ArrowDown":
 			if (player.canMove(2)) {
-				countdown -= dict[player.position.directions[2]]
+				countdown -= dict[player.position.directions[2].type]
 				player.position = grid[player.position.yPos + 1][player.position.xPos]
 				yPosition += speed;
 				dummy_pos = "down"
@@ -109,7 +109,7 @@ function checkKey(event) {
 			break;
 		case "ArrowLeft":
 			if (player.canMove(3)) {
-				countdown -= dict[player.position.directions[3]]
+				countdown -= dict[player.position.directions[3].type]
 				player.position = grid[player.position.yPos][player.position.xPos - 1]
 				xPosition -= speed;
 				dummy_pos = "left"
@@ -118,7 +118,7 @@ function checkKey(event) {
 			break;
 		case "ArrowRight":
 			if (player.canMove(1)) {
-				countdown -= dict[player.position.directions[1]]
+				countdown -= dict[player.position.directions[1].type]
 				player.position = grid[player.position.yPos][player.position.xPos + 1]
 				xPosition += speed;
 				dummy_pos = "right"
@@ -162,14 +162,6 @@ function loadGrid() {
 		layerCounter += 1
 	}
 
-	for (let i=0; i < gridSize ; i++) {
-	    for (let j=0; j < gridSize ; j++) {
-	        console.log(grid[j][i].xPos + " " + grid[j][i].yPos)
-
-	    }
-	    console.log()
-	}
-
 	counter = 0
 	layerCounter = 1
 
@@ -197,3 +189,4 @@ function loadGrid() {
 
 console.log(document.querySelector(".border.layer4.rec09").style)
 loadGrid()
+
