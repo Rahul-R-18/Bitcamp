@@ -2,7 +2,6 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    overflow: hidden;
 }
 
 .base{
@@ -13,7 +12,6 @@
     margin: 0;
     padding: 0;
     border: 7px solid red;
-
 }
 
 
@@ -261,7 +259,7 @@
 }
 
 #sprite{
-    z-index:3;
+    z-index:7;
     position: absolute;
     top: 0cm;
     margin-left: 10px;
