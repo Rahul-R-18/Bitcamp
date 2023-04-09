@@ -280,12 +280,14 @@
     background-color: #ddd;
     border-radius: 0.5em;
     margin: 0.2em;
+    position: absolute;
+    top: 11.75cm;
+    margin-left: 5cm;
 }
 
 #countdown{
     position: absolute;
     top: 11cm;
-    margin-left: 30cm;
 }
 
 #boldtext{
@@ -294,13 +296,13 @@
 
 #tremain{
     position: absolute;
-    top: 10.25cm;
+    top: 12cm;
 }
 
 #countuptimer {
     font-size: 25px;
     position: absolute;
-    top: 13.5cm;
+    top: 14cm;
     margin-left: 30cm;
     z-index: 5;
 }
@@ -310,6 +312,9 @@
     background-color: #ddd;
     border-radius: 0.5em;
     margin: 0.2em;
+    position: absolute;
+    top: 2cm;
+    margin-left: 5cm;
 }
 
 #textbox1{
