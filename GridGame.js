@@ -9,6 +9,7 @@ let color_dict = {"mud":"brown","ice":"lightblue","reg":"grey"}
 let xPosition = 0;
 let yPosition = 0;
 
+let hasTimerStarted = false;
 let countdown = 30;
 
 document.addEventListener("keydown", function (event) {
