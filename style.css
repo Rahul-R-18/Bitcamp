@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    overflow: hidden;
 }
 
 .base{
@@ -281,6 +282,26 @@
     background-color: #ddd;
     border-radius: 0.5em;
     margin: 0.2em;
+}
+
+#textbox1{
+    background-color:#ddd;
+    height: 50px;
+    width: 50px;
+    z-index: 6;
+    position: absolute;
+    top: 0cm;
+    margin-left: 320px;
+}
+
+#textbox2{
+    background-color:#ddd;
+    height: 50px;
+    width: 50px;
+    z-index: 6;
+    position: absolute;
+    top: 8cm;
+    margin-left: 2px;
 }
 
 
