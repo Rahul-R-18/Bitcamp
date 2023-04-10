@@ -1,9 +1,8 @@
 // JavaScript source code
-
 let gridSize = 4
 let grid = [[], [], [], []]
 let player = null
-let dict = { "mud": 7, "ice": 3, "reg": 5 }
+let dict = { "mud": 4, "ice": 5, "reg": 2}
 let color_dict = { "mud": "brown", "ice": "lightblue", "reg": "grey" }
 
 let xPosition = 0;
@@ -35,7 +34,7 @@ document.addEventListener("keydown", function (event) {
 				document.getElementById("countup").innerHTML = "00:" + score;
 			}
 
-			if (countdown == 0) {
+			if (countdown <= 0) {
 				clearInterval(interval);
 				document.getElementById("timer").innerHTML = "Time's Up!";
 				document.getElementById("countup").innerHTML = "You stayed alive for " + score + " seconds!";
@@ -154,7 +153,7 @@ function checkKey(event) {
 function checkTimeGain(pos) {
 
 	if (pos.yPos === extraTime1[0] && pos.xPos === extraTime1[1] || pos.yPos === extraTime2[0] && pos.xPos === extraTime2[1]) {
-		countdown += pos.data
+		countdown += pos.data;
 
 		randomizeGrid()
 	}
@@ -222,7 +221,7 @@ function randomizeGrid() {
 	grid[extraTime2[0]][extraTime2[1]].data = Math.floor(Math.random() * 6) + 5
 
 	//setPositions of extraTimes
-	
+
 	document.getElementById("textbox1").style.top = (extraTime1[0] * 315) + "px"
 	document.getElementById("textbox1").style.left = (extraTime1[1] * 315) + "px"
 	document.getElementById("textbox1").innerHTML = "<p>" + grid[extraTime1[0]][extraTime1[1]].data + "</p>"
@@ -234,6 +233,3 @@ function randomizeGrid() {
 
 console.log(document.querySelector(".border.layer4.rec09").style)
 loadGrid()
-
-
-
